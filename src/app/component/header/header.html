@@ -1,0 +1,65 @@
+<header class="w-full px-4 sm:px-6 lg:px-10 py-4">
+  <div class="flex items-center justify-between rounded-2xl bg-white shadow-md px-4 sm:px-6 lg:px-10 py-3 sm:py-4">
+
+    <!-- Logo -->
+    <div class="flex items-center gap-3">
+      <div class="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full">
+        <img src="logo-timer.png" alt="Timer Logo" class="h-5 sm:h-6">
+      </div>
+      <span class="text-base sm:text-lg font-semibold">
+        Timer
+      </span>
+    </div>
+
+    <!-- Menu desktop -->
+    <div class="hidden sm:flex items-center gap-6 text-gray-600">
+      <button class="flex items-center gap-2"  (click)="openAddTask()">
+        <i class="fa-solid fa-list-check"></i>
+        <span class="font-medium">Tarefas</span>
+      </button>
+
+      <button class="flex items-center gap-2" (click)="openConfig()">
+        <i class="fa-solid fa-gears"></i>
+        <span class="font-medium">Configurações</span>
+      </button>
+    </div>
+
+    <!-- Hamburger (mobile) -->
+    <button class="sm:hidden text-gray-700 text-2xl" (click)="toggleMenu()" aria-label="Abrir menu">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </div>
+</header>
+
+
+@if(isConfig) {
+  <app-config-timer (close)="onClose()"></app-config-timer>
+}
+
+@if(isAddTask){
+  <app-task (close)="onCloseAddTask()" ></app-task>
+}
+
+
+@if (isMenuOpen) {
+
+  <!-- Backdrop -->
+  <div class="fixed inset-0 bg-black/40 z-40" (click)="closeMenu()"></div>
+
+  <!-- Drawer -->
+  <div class="fixed top-0 right-0 h-full w-72 bg-white shadow-xl z-50 p-6 flex flex-col gap-6">
+    <button class="self-end text-2xl text-gray-600" (click)="closeMenu()">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <button class="flex items-center gap-3 text-gray-700" (click)="openAddTask(); closeMenu()">
+      <i class="fa-solid fa-list-check text-lg"></i>
+      <span class="font-medium">Tarefas</span>
+    </button>
+
+    <button class="flex items-center gap-3 text-gray-700" (click)="openConfig(); closeMenu()">
+      <i class="fa-solid fa-gears text-lg"></i>
+      <span class="font-medium">Configurações</span>
+    </button>
+  </div>
+}
