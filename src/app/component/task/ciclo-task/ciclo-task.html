@@ -1,23 +1,11 @@
-<div class="flex w-fit items-center gap-4 bg-white rounded-2xl px-6 py-4 shadow-sm mx-auto mt-10">
-
-  <!-- Texto -->
-  <span class="text-sm font-medium text-gray-600">
-    Ciclos
-  </span>
-
-  <!-- Contador -->
-  <span class="text-lg font-semibold text-gray-800">
-    1<span class="text-gray-400">/4</span>
-  </span>
-
-  <!-- Indicadores -->
-  <div class="flex gap-2 ml-2">
-    <span class="w-3 h-3 rounded-full bg-blue-500"></span>
-    <span class="w-3 h-3 rounded-full bg-gray-300"></span>
-    <span class="w-3 h-3 rounded-full bg-gray-300"></span>
-    <span class="w-3 h-3 rounded-full bg-gray-300"></span>
-    <span class="w-3 h-3 rounded-full bg-gray-300"></span>
-    <span class="w-3 h-3 rounded-full bg-gray-300"></span>
-  </div>
-
+<div class="flex gap-2 ml-2">
+  @for (dot of cyclesArray; track $index; let i = $index) {
+    <span
+      class="w-3 h-3 rounded-full transition"
+      [ngClass]="{
+        'bg-blue-500': i < currentCycle,
+        'bg-gray-300': i >= currentCycle
+      }"
+    ></span>
+  }
 </div>

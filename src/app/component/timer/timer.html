@@ -1,24 +1,36 @@
-<div class="flex flex-col items-center justify-center ">
-  <div class="flex gap-1 text-[10rem]">
-    <span>25</span>
+<div class="flex flex-col items-center justify-center">
+  <div class="flex gap-2 leading-none whitespace-nowrap text-[clamp(6rem,20vw,28rem)]">
+    <span>{{ minutes }}</span>
     <span>:</span>
-    <span>10</span>
+    <span>{{ seconds }}</span>
   </div>
 
-   <div class="mt-12 flex gap-6">
-    <button class="px-8 py-4 text-xl font-semibold rounded-2xl  text-white hover:opacity-90 transition" style="background-color: var(--color-azul);" (click)="pauseOrStart()" >
-        @if(continue){
-           <i class="fa-solid fa-play"></i>  
-           Continuar 
-        } @else{
-            <i class="fa-solid fa-pause"></i>
-            Pausar
-        }
+  <div class="mt-12 flex gap-6">
+    <button
+      class="px-8 py-4 text-xl font-semibold rounded-4xl border border-black"
+      (click)="pauseOrStart()"
+    >
+      @if (isRunning) {
+        <i class="fa-solid fa-play"></i> Start
+      } @else {
+        <i class="fa-solid fa-pause"></i> Pause
+      }
     </button>
 
-    <button class="px-8 py-4 text-xl font-semibold rounded-2xl text-black bg-white hover:opacity-90 transition">
-        <i class="fa-solid fa-arrow-rotate-left"></i>
-        Resetar
+    <button
+      class="px-1 py-4 rounded-2xl"
+      (click)="resetTimer()"
+    >
+      <i class="fa-solid fa-arrow-rotate-right text-2xl"></i>
     </button>
-   </div>
+
+    <button
+      class="px-1 py-4 rounded-2xl"
+      (click)="openConfig()"
+    >
+      <i class="fa-solid fa-gears text-2xl"></i>
+    </button>
+  </div>
 </div>
+
+@if(isConfig) { <app-dialog-config (close)="onClose()"></app-dialog-config > }
