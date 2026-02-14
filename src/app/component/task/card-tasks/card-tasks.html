@@ -1,11 +1,8 @@
 
 <div class="group bg-white border border-gray-200 rounded-xl p-4 flex items-center justify-between transition hover:shadow-md mt-2">
-
-  <!-- ESTADO NORMAL -->
   @if (!isEditing) {
     <div class="flex items-center justify-between w-full">
 
-      <!-- Texto -->
       <div class="flex items-center gap-3">
         <input type="checkbox" class="peer h-6 w-6 cursor-pointer" style="accent-color: var(--color-terra-queimada);"/>
 
@@ -14,7 +11,6 @@
         </span>
       </div>
 
-      <!-- Ações -->
       <div class="flex items-center gap-3 opacity-0 group-hover:opacity-100 transition">
         <button class="text-gray-400 hover:text-blue-500" (click)="isEditing = true">
           <i class="fa-solid fa-pen"></i>
@@ -30,8 +26,6 @@
   <!-- ESTADO EDIÇÃO -->
   @if (isEditing) {
     <div class="flex items-center justify-between w-full">
-
-      <!-- Input -->
       <div class="flex items-center gap-3 flex-1">
         <input type="checkbox" disabled class="h-6 w-6 opacity-40" />
 

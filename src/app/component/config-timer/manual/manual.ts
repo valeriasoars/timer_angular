@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PomodoroConfig } from '../../../service/pomodoro/pomodoro-config';
-import { PomodoroConfigModel } from '../../../model/pomodoro-config-model';
-
 import { FormsModule } from '@angular/forms';
+import { TimerConfig } from '../../../model/timerConfigModel';
 
 @Component({
   selector: 'app-manual',
@@ -10,15 +9,22 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './manual.html',
   styleUrl: './manual.css',
 })
-export class Manual {
-  config: PomodoroConfigModel 
-
-  constructor(private configService: PomodoroConfig){
-     this.config = this.configService.getConfig();
+export class Manual implements OnInit {
+    config: TimerConfig = {
+    studyMinutes: 25,
+    breakMinutes: 5,
+    totalCycles: 4,
+    isManualMode: true
   }
 
-  
-  onSave() {
-    this.configService.saveConfig(this.config);
+constructor(private configService: PomodoroConfig) {}
+
+  ngOnInit(): void {
+    this.config = { ...this.configService.getConfig() }
+  }
+
+  onSave(): void {
+    this.configService.updateConfig(this.config)
+    alert('Configuração salva!')
   }
 }

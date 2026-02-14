@@ -1,11 +1,51 @@
-<div class="flex gap-2 ml-2">
-  @for (dot of cyclesArray; track $index; let i = $index) {
-    <span
-      class="w-3 h-3 rounded-full transition"
+<div class="flex flex-col items-center gap-4 p-6 bg-white/50 rounded-2xl shadow-sm">
+  <div class="text-center">
+    <p class="text-sm text-gray-500 mb-1">Status atual</p>
+    <p 
+      class="text-xl font-bold transition-colors duration-300"
       [ngClass]="{
-        'bg-blue-500': i < currentCycle,
-        'bg-gray-300': i >= currentCycle
+        'text-green-600': timerState === 'study',
+        'text-blue-600': timerState === 'break',
+        'text-gray-600': timerState === 'idle'
       }"
-    ></span>
-  }
+    >
+      {{ statusText }}
+    </p>
+  </div>
+  
+  <div class="flex items-center gap-3">
+    <span class="text-sm text-gray-600 font-medium">Progresso:</span>
+    <div class="flex gap-2">
+      @for (dot of cyclesArray; track $index; let i = $index) {
+        <div class="relative">
+          <span
+            class="block w-5 h-5 rounded-full transition-all duration-500"
+            [ngClass]="{
+              'bg-green-500 shadow-lg shadow-green-200': i < currentCycle,
+              'bg-green-400 scale-125 shadow-lg shadow-green-300 ring-2 ring-green-300': i === currentCycle && timerState === 'study',
+              'bg-blue-400 scale-125 shadow-lg shadow-blue-300 ring-2 ring-blue-300': i === currentCycle && timerState === 'break',
+              'bg-gray-300': i > currentCycle
+            }"
+          ></span>
+          
+          <!-- Ícone no ciclo atual -->
+          @if (i === currentCycle && timerState !== 'idle') {
+            <i 
+              class="fa-solid absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-xs"
+              [ngClass]="{
+                'fa-book': timerState === 'study',
+                'fa-coffee': timerState === 'break'
+              }"
+            ></i>
+          }
+          
+          <!-- Checkmark nos completados -->
+          @if (i < currentCycle) {
+            <i class="fa-solid fa-check absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-xs"></i>
+          }
+        </div>
+      }
+    </div>
+    <span class="text-sm text-gray-600">{{ currentCycle }}/{{ config.totalCycles }}</span>
+  </div>
 </div>

@@ -9,6 +9,6 @@ import { Component, Input } from '@angular/core';
 export class CardTasks {
   @Input({required: true}) task!: string
 
-  isEditing = false;
-  editText = '';
+  isEditing = false
+  editText = ''
 }
