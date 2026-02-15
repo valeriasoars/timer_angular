@@ -1,27 +1,29 @@
-<div class="flex flex-col items-center gap-4 p-6 bg-white/50 rounded-2xl shadow-sm">
-  <div class="text-center">
-    <p class="text-sm text-gray-500 mb-1">Status atual</p>
-    <p 
-      class="text-xl font-bold transition-colors duration-300"
-      [ngClass]="{
-        'text-green-600': timerState === 'study',
-        'text-blue-600': timerState === 'break',
-        'text-gray-600': timerState === 'idle'
-      }"
-    >
-      {{ statusText }}
-    </p>
-  </div>
-  
-  <div class="flex items-center gap-3">
-    <span class="text-sm text-gray-600 font-medium">Progresso:</span>
+<div class="w-full max-w-md mx-auto px-4">
+<div class="flex flex-col items-center gap-6 p-6">
+    <div>
+      <span 
+        class="px-4 py-1.5 rounded-full text-sm font-medium 
+               transition-all duration-300"
+        [ngClass]="{
+          'bg-black opacity-100 text-white': timerState === 'study',
+          'bg-blue-100 text-blue-700': timerState === 'break',
+          'bg-gray-100 text-gray-500': timerState === 'idle'
+        }"
+      >
+        {{ statusText }}
+      </span>
+    </div>
+
+  <div class="w-full flex flex-col items-center gap-3">
+   <div class="flex items-center justify-center gap-3 flex-wrap">
+ 
     <div class="flex gap-2">
       @for (dot of cyclesArray; track $index; let i = $index) {
         <div class="relative">
           <span
             class="block w-5 h-5 rounded-full transition-all duration-500"
             [ngClass]="{
-              'bg-green-500 shadow-lg shadow-green-200': i < currentCycle,
+              'bg-black shadow-lg shadow-green-200': i < currentCycle,
               'bg-green-400 scale-125 shadow-lg shadow-green-300 ring-2 ring-green-300': i === currentCycle && timerState === 'study',
               'bg-blue-400 scale-125 shadow-lg shadow-blue-300 ring-2 ring-blue-300': i === currentCycle && timerState === 'break',
               'bg-gray-300': i > currentCycle
@@ -34,7 +36,7 @@
               class="fa-solid absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-xs"
               [ngClass]="{
                 'fa-book': timerState === 'study',
-                'fa-coffee': timerState === 'break'
+                'fa-pause': timerState === 'break'
               }"
             ></i>
           }
@@ -46,6 +48,9 @@
         </div>
       }
     </div>
-    <span class="text-sm text-gray-600">{{ currentCycle }}/{{ config.totalCycles }}</span>
+    <span class="text-lg text-gray-600">{{ currentCycle + 1 }}/{{ config.totalCycles }}</span>
   </div>
+  </div>
+
+</div>
 </div>

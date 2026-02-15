@@ -1,14 +1,11 @@
 @import "tailwindcss";
 
 :root{
-    --color-areia: #D3C7AD;
-    --color-azul: #28374A;
-    --color-terra-queimada: #754437;
-    --color-verde-opaco: #6B6751;
-    --color-off-argila: #F2EDDE;
+    --color-black: #000000;
+    --color-off: #f3f2f0;
 }
 
 body {
-  background-color: var(--color-areia);
+  background-color: var(--color-off);
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }

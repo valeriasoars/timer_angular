@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Timer } from "../../component/timer/timer";
-import { CicloTask } from "../../component/task/ciclo-task/ciclo-task";
+import { CicloTask } from "../../component/ciclo-task/ciclo-task";
 
 @Component({
   selector: 'app-home',

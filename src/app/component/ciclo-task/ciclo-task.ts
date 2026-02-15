@@ -1,9 +1,9 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
-import { PomodoroConfig, TimerState } from '../../../service/pomodoro/pomodoro-config';
+import { PomodoroConfig, TimerState } from '../../service/pomodoro/pomodoro-config';
 import { FormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
 import { Subscription } from 'rxjs';
-import { TimerConfig } from '../../../model/timerConfigModel';
+import { TimerConfig } from '../../model/timerConfigModel';
 
 @Component({
   selector: 'app-ciclo-task',
@@ -56,9 +56,9 @@ export class CicloTask {
   
   get statusText(): string {
     if (this.timerState === TimerState.STUDY) {
-      return `Ciclo ${this.currentCycle + 1} de ${this.config.totalCycles} - Estudando`
+      return `Estudando`
     } else if (this.timerState === TimerState.BREAK) {
-      return `Pausa do ciclo ${this.currentCycle}`
+      return `Pausa`
     }
     return 'Pronto para começar'
   }

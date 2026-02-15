@@ -1,7 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Meta } from "../config-timer/meta/meta";
 import { Manual } from "../config-timer/manual/manual";
-import { ListTask } from "../task/list-task/list-task";
 import { PomodoroConfig } from '../../service/pomodoro/pomodoro-config';
 
 interface NavItem {
@@ -11,7 +10,7 @@ interface NavItem {
 
 @Component({
   selector: 'app-dialog-config',
-  imports: [Meta, Manual, ListTask],
+  imports: [Meta, Manual],
   templateUrl: './dialog-config.html',
   styleUrl: './dialog-config.css',
 })
@@ -27,8 +26,8 @@ export class DialogConfig implements OnInit{
   itensNav: NavItem[] = [
     {  route: 'Definir ciclos de estudo', key: 'ciclos' },
     {  route: 'Definir metas de estudos',  key: 'metas'  },
-    {  route: 'Tarefas',  key: 'tarefas'},
-    {  route: 'Tema',  key: 'tema'  },
+    // {  route: 'Tarefas',  key: 'tarefas'},
+    // {  route: 'Tema',  key: 'tema'  },
   ]
 
   activeView: 'menu' | 'metas' | 'ciclos' | 'tarefas' | 'tema' = 'menu'
