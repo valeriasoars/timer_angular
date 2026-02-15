@@ -60,6 +60,6 @@ export class CicloTask {
     } else if (this.timerState === TimerState.BREAK) {
       return `Pausa`
     }
-    return 'Pronto para começar'
+    return `Pronto para começar`
   }
 }
